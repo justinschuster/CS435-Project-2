@@ -17,9 +17,12 @@ class GraphNode:
 class Graph:
     def __init__(self) -> None:
         self.nodes = list()
+        self.edges = list()
 
     # Adds a new node to the graph
-    def addNode(nodeVal: GraphNode) -> None:
+    def addNode(self, nodeVal: GraphNode) -> None:
+        newNode = GraphNode(nodeVal)
+        self.nodes.append(newNode)
         return
 
     # adds an undirected edge between first and second (and vice versa)
@@ -31,12 +34,17 @@ class Graph:
         return
     
     # returns a set of all Nodes in the graph
-    def getAllNodes():
-        return 
+    def getAllNodes(self):
+        return self.nodes
 
-def main():
-    print("Hello World")
-    return
+def main() -> None:
+    maze = Graph()
+    maze.addNode(5)
+
+    nodes = maze.getAllNodes()
+    for node in nodes:
+        print(node.data)
+    
 
 if __name__=="__main__":
     main()
