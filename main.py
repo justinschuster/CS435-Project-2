@@ -1,14 +1,8 @@
-class Edge:
-    def __init__(self, dir, d=None, s=None) -> None:
-        self.directed = dir 
-
-        if self.directed is True:
-            self.dest = d
-            self.source = s
-        else:
-            self.dest = None
-            self.source = None
-
+class UndirectedEdge:
+    def __init__(self, first, second) -> None:
+        self.first = first
+        self.second = second
+        
 class GraphNode:
     def __init__(self, data: int) -> None:
         self.data = data
@@ -17,17 +11,18 @@ class GraphNode:
 class Graph:
     def __init__(self) -> None:
         self.nodes = list()
-        self.edges = list()
+        self.un_edges = list()
 
     # Adds a new node to the graph
-    def addNode(self, nodeVal: GraphNode) -> None:
+    def addNode(self, nodeVal: GraphNode) -> GraphNode:
         newNode = GraphNode(nodeVal)
         self.nodes.append(newNode)
-        return
+        return newNode
 
     # adds an undirected edge between first and second (and vice versa)
-    def addUndirectedEdge(first: GraphNode, second: GraphNode) -> None:
-        return
+    def addUndirectedEdge(self, first: GraphNode, second: GraphNode) -> None:
+        newEdge = UndirectedEdge(first, second)
+        self.un_edges.append(newEdge)
 
     # removes an undirected edge between first and second (and vice versa)
     def removeUndirectedEdge(first: GraphNode, second: GraphNode) -> None:
@@ -39,11 +34,18 @@ class Graph:
 
 def main() -> None:
     maze = Graph()
-    maze.addNode(5)
+    first = maze.addNode(5)
+    second = maze.addNode(6)
 
-    nodes = maze.getAllNodes()
-    for node in nodes:
-        print(node.data)
+    #nodes = maze.getAllNodes()
+    #for node in nodes:
+        #print(node.data)
+
+    maze.addUndirectedEdge(first, second)
+
+    for edge in maze.un_edges:
+        print(edge.first.data)
+
     
 
 if __name__=="__main__":
