@@ -1,15 +1,21 @@
 class Edge:
-    def __init__(self, d, s) -> None:
-        self.dest = d
-        self.source = s
+    def __init__(self, dir, d=None, s=None) -> None:
+        self.directed = dir 
+
+        if self.directed is True:
+            self.dest = d
+            self.source = s
+        else:
+            self.dest = None
+            self.source = None
 
 class GraphNode:
-    def __init__(self, data: int):
+    def __init__(self, data: int) -> None:
         self.data = data
         self.neighbors = list()
 
 class Graph:
-    def __init__(self):
+    def __init__(self) -> None:
         self.nodes = list()
 
     # Adds a new node to the graph
