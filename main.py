@@ -1,3 +1,8 @@
+class Edge:
+    def __init__(self, d, s) -> None:
+        self.dest = d
+        self.source = s
+
 class GraphNode:
     def __init__(self, data: int):
         self.data = data
