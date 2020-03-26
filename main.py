@@ -7,8 +7,21 @@ class Graph:
     def __init__(self):
         self.nodes = list()
 
-    def addNode(nodeVal: GraphNode):
+    # Adds a new node to the graph
+    def addNode(nodeVal: GraphNode) -> None:
         return
+
+    # adds an undirected edge between first and second (and vice versa)
+    def addUndirectedEdge(first: GraphNode, second: GraphNode) -> None:
+        return
+
+    # removes an undirected edge between first and second (and vice versa)
+    def removeUndirectedEdge(first: GraphNode, second: GraphNode) -> None:
+        return
+    
+    # returns a set of all Nodes in the graph
+    def getAllNodes():
+        return 
 
 def main():
     print("Hello World")
