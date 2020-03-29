@@ -26,6 +26,9 @@ class Graph:
             elif node[0] == second and first not in node:
                 node.append(first)
 
+    def addDirectedEdge(self, first: GraphNode, second: GraphNode) -> None:
+        self.adjList[first.data].append(second)
+
     # removes an undirected edge between first and second (and vice versa)
     def removeUndirectedEdge(self, first: GraphNode, second: GraphNode) -> None:
         for nodeList in self.adjList:
@@ -54,10 +57,22 @@ def createRandomUnweightedGraphIter(n: int) -> Graph:
 
     return maze
 
-def main() -> None:
-    maze = createRandomUnweightedGraphIter(10)
+# creates Graph n nodes. Each node only has an edge to the next node created
+def createLinkedList(n: int) -> Graph:
+    maze = Graph()
 
-    for node in maze.adjList[0]:
+    for i in range(0, n):
+        maze.addNode(i)
+
+    for i in range(0, n-1):
+        maze.addDirectedEdge(maze.nodes[i], maze.nodes[i+1])
+
+    return maze
+
+def main() -> None:
+    maze = createLinkedList(10)
+
+    for node in maze.adjList[3]:
         print(node.data)
 
 if __name__=="__main__":
