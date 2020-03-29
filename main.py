@@ -1,7 +1,8 @@
+import random 
+
 class GraphNode:
     def __init__(self, data: int) -> None:
         self.data = data
-        #self.edges = list()
 
 class Graph:
     def __init__(self) -> None:
@@ -20,9 +21,9 @@ class Graph:
     # adds an undirected edge between first and second (and vice versa)
     def addUndirectedEdge(self, first: GraphNode, second: GraphNode) -> None:
         for node in self.adjList:
-            if node[0] == first:
+            if node[0] == first and second not in node:
                 node.append(second)
-            elif node[0] == second:
+            elif node[0] == second and first not in node:
                 node.append(first)
 
     # removes an undirected edge between first and second (and vice versa)
@@ -41,32 +42,23 @@ class Graph:
 def createRandomUnweightedGraphIter(n: int) -> Graph:
     maze = Graph()
 
+    for i in range(0, n):
+        maze.addNode(i)
+
+    numEdges = random.randint(1, n*n)
+    for i in range(0, numEdges):
+        firstNode = random.randint(0, n-1)
+        secondNode = random.randint(0, n-1)
+        if firstNode != secondNode:
+            maze.addUndirectedEdge(maze.nodes[firstNode], maze.nodes[secondNode])
+
     return maze
 
 def main() -> None:
-    maze = Graph()
-    first = maze.addNode(5)
-    second = maze.addNode(6)
+    maze = createRandomUnweightedGraphIter(10)
 
-    #nodes = maze.getAllNodes()
-    #for node in nodes:
-        #print(node.data)
-
-    maze.addUndirectedEdge(first, second)
-    maze.removeUndirectedEdge(first, second)
-
-    for node in maze.adjList:
-        for neighbor in node:
-            print(neighbor.data)
-
-    
-    
-    
-    
-    
-    
-
-    
+    for node in maze.adjList[0]:
+        print(node.data)
 
 if __name__=="__main__":
     main()
