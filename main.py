@@ -1,48 +1,47 @@
-# TODO
-# Maybe create mouse class and store directed edges there
-# directed edges can be the path the mouse takes
-class DirectedEdge:
-    def __init__(self, source, dest) -> None:
-        self.source = source
-        self.dest = dest
- 
-class UndirectedEdge:
-    def __init__(self, first, second) -> None:
-        self.first = first
-        self.second = second
-        
 class GraphNode:
     def __init__(self, data: int) -> None:
         self.data = data
-        self.neighbors = list()
+        #self.edges = list()
 
 class Graph:
     def __init__(self) -> None:
         self.nodes = list()
-        self.un_edges = list()
+        self.adjList = []
 
     # Adds a new node to the graph
     def addNode(self, nodeVal: GraphNode) -> GraphNode:
         newNode = GraphNode(nodeVal)
         self.nodes.append(newNode)
+        nodeList = []
+        nodeList.append(newNode)
+        self.adjList.append(nodeList)
         return newNode
 
     # adds an undirected edge between first and second (and vice versa)
     def addUndirectedEdge(self, first: GraphNode, second: GraphNode) -> None:
-        newEdge = UndirectedEdge(first, second)
-        self.un_edges.append(newEdge)
+        for node in self.adjList:
+            if node[0] == first:
+                node.append(second)
+            elif node[0] == second:
+                node.append(first)
 
     # removes an undirected edge between first and second (and vice versa)
     def removeUndirectedEdge(self, first: GraphNode, second: GraphNode) -> None:
-        for edge in self.un_edges:
-            if (edge.first == first and edge.second == second):
-                 self.un_edges.remove(edge)
-            elif (edge.first == second and edge.second == first):
-                self.un_edges.remove(edge)
-    
+        for nodeList in self.adjList:
+            if nodeList[0] == first:
+                nodeList.remove(second)
+            elif nodeList[0] == second:
+                nodeList.remove(first)
+
     # returns a set of all Nodes in the graph
     def getAllNodes(self):
         return self.nodes
+
+# Creates n random nodes with randomly assigned unweighted, bidirectional edges
+def createRandomUnweightedGraphIter(n: int) -> Graph:
+    maze = Graph()
+
+    return maze
 
 def main() -> None:
     maze = Graph()
@@ -55,8 +54,17 @@ def main() -> None:
 
     maze.addUndirectedEdge(first, second)
     maze.removeUndirectedEdge(first, second)
-    for edge in maze.un_edges:
-        print(edge.first.data)
+
+    for node in maze.adjList:
+        for neighbor in node:
+            print(neighbor.data)
+
+    
+    
+    
+    
+    
+    
 
     
 
