@@ -2,13 +2,36 @@ import random
 from Graph import GraphNode, Graph 
 
 class GraphSearch:
+    def __init__(self, graph: Graph):
+        self.graph = graph
+        self.visited = [False] * len(graph.nodes)
+        self.traversal = []
+
     # recursive DFS traversal of the graph
-    def DFSRec(start: GraphNode, end: GraphNode) -> list():
-        return 
+    def DFSRec(self, start: GraphNode, end: GraphNode) -> list():
+        if (self.visited[start.data] == False):
+            return self.dfsHelper(start, end) 
+                
+    def dfsHelper(self, current: GraphNode, end: GraphNode):
+        # mark visited 
+        self.visited[current.data] = True
+        self.traversal.append(current)
+
+        # "process"
+        if (current.data == end.data):
+            return self.traversal
+
+        # Not sure how to add it to array right now 
+        # for each vertex that has an edge from v:
+        for vertex in self.graph.adjList[current.data]:
+            # if v is not visited 
+            if (self.visited[vertex.data] == False):
+                # dfs v
+                self.DFSRec(vertex, end)
 
 # Creates n random nodes with randomly assigned unweighted, bidirectional edges
 def createRandomUnweightedGraphIter(n: int) -> Graph:
-    maze = Graph(n)
+    maze = Graph()
 
     for i in range(0, n):
         maze.addNode(i)
@@ -35,10 +58,16 @@ def createLinkedList(n: int) -> Graph:
     return maze
 
 def main() -> None:
-    maze = createLinkedList(10)
+    maze = createRandomUnweightedGraphIter(10)
+    search = GraphSearch(maze)
 
-    for node in maze.adjList[3]:
-        print(node.data)
+    traversal = []
+    print("Dest: " + str(maze.nodes[9].data))
+    traversal = search.DFSRec(maze.nodes[0], maze.nodes[9])
+    print(traversal)
+
+    #for node in traversal:
+    #    print(node.data)
 
 if __name__=="__main__":
     main()
