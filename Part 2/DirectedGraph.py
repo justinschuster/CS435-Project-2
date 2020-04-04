@@ -28,8 +28,11 @@ class DirectedGraph():
         return None
 
     # removes directed edge between two nodes
-    def removeDirectedEdge(first, second) -> None:
-        pass
+    def removeDirectedEdge(self, first, second) -> None:
+        self.adjList[first].remove(second)
+        print(self.adjList[first])
+
+        return None 
 
     # returns a set of all Nodes in the graph 
     def getAllNodes():
