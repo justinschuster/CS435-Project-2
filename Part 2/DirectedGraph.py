@@ -14,14 +14,18 @@ class DirectedGraph():
     # adds a new node to the graph
     def addNode(self, nodeVal) -> None:
         self.adjList[nodeVal] = [] 
-        print("Added node to adjacencyy list")
-        print(self.adjList[nodeVal])
+        print("Added node to adjacency list")
 
         return None 
 
+    # problem comes in when we are specifying which nodes are first and second 
+    # we don't have node objects, may need them
     # adds a directed edge between first and second
-    def addDirectedEdge(first, second) -> None:
-        pass
+    def addDirectedEdge(self, first, second) -> None:
+        self.adjList[first].append(second)
+        print(self.adjList[first])
+
+        return None
 
     # removes directed edge between two nodes
     def removeDirectedEdge(first, second) -> None:
