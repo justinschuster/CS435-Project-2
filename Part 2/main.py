@@ -4,13 +4,17 @@
 
 from DirectedGraph import DirectedGraph
 
-def main() -> None:
-    maze = DirectedGraph()
-    maze.addNode(1)
-    maze.addNode(2)
+# iteratively creates a DAG with n nodes
+def createRandomDagIter(n: int) -> DirectedGraph:
+    newGraph = DirectedGraph()
 
-    maze.addDirectedEdge(1, 2)
-    maze.removeDirectedEdge(1, 2)
+    for i in range(0, n):
+        newGraph.addNode(i)
+
+    return newGraph
+
+def main() -> None:
+    maze = createRandomDagIter(5)
 
     for node in maze.getAllNodes():
         print(node)
