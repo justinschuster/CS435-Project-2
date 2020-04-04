@@ -2,8 +2,6 @@
 # Author: Justin Schuster
 # DirectedGraph.py 
 
-from Graph import Graph 
-
 # Don't even know if we need to create actual nodes or just entries in adjList 
 #class DAGNode():
 #    def __init__(self, nodeVal: int) -> None:
@@ -16,6 +14,10 @@ class DirectedGraph():
     # adds a new node to the graph
     def addNode(self, nodeVal) -> None:
         self.adjList[nodeVal] = [] 
+        print("Added node to adjacencyy list")
+        print(self.adjList[nodeVal])
+
+        return None 
 
     # adds a directed edge between first and second
     def addDirectedEdge(first, second) -> None:
