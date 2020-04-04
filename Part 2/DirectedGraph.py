@@ -1,3 +1,7 @@
+# CS 435 Project 2 Part 2
+# Author: Justin Schuster
+# DirectedGraph.py 
+
 from Graph import Graph 
 
 # Don't even know if we need to create actual nodes or just entries in adjList 
