@@ -35,5 +35,5 @@ class DirectedGraph():
         return None 
 
     # returns a set of all Nodes in the graph 
-    def getAllNodes():
-        pass 
+    def getAllNodes(self) -> list():
+        return self.adjList.keys()
