@@ -55,5 +55,18 @@ class TopSort:
     # valid topological sort of the graph using mDFS algorithm 
     @staticmethod
     def mDFS(graph: DirectedGraph) -> list():
+        # S is a stack
+        # for each vertex v (node) in G
+            # if v is not visited 
+                # DFShelper(v)
+        # output all nodes in S in order
         pass 
 
+    @staticmethod
+    def DFSHelper(node, stack):
+        # set v as visited
+        # for each neighbor <- v's neighbor 
+            # if neighbor is not visited 
+                # call DFSHelper(neighbor)
+        #append V to S
+        pass
