@@ -15,12 +15,14 @@ class GraphNode():
 class DirectedGraph():
     def __init__(self) -> None:
         self.adjList = {}
+        self.nodes = []
 
     # adds a new node to the graph
     def addNode(self, nodeVal) -> None:
         newNode = GraphNode(nodeVal)
-        self.adjList[newNode] = [] 
-        return None 
+        self.adjList[newNode] = []
+        self.nodes.append(newNode)
+        return newNode 
 
     # problem comes in when we are specifying which nodes are first and second 
     # we don't have node objects, may need them
@@ -38,7 +40,11 @@ class DirectedGraph():
 
     # returns a set of all Nodes in the graph 
     def getAllNodes(self) -> list():
-        return self.adjList.keys()
+        output = []
+        for key in self.adjList.keys():
+            output.append(key)
+            
+        return output 
 
     # checks to see if graph is acyclic
     def isAcyclic(self, node, path=None) -> bool:
