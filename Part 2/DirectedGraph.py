@@ -14,7 +14,7 @@ class DirectedGraph():
     # adds a new node to the graph
     def addNode(self, nodeVal) -> None:
         self.adjList[nodeVal] = [] 
-
+       
         return None 
 
     # problem comes in when we are specifying which nodes are first and second 
@@ -34,3 +34,20 @@ class DirectedGraph():
     # returns a set of all Nodes in the graph 
     def getAllNodes(self) -> list():
         return self.adjList.keys()
+
+    # checks to see if graph is acyclic
+    def isAcyclic(self, node, path=None) -> bool:
+        # No where else to go (base case)
+        if len(self.adjList[node]) is 0:
+            return True
+
+        if path is None:
+                path = []
+        
+        # check for each neighbor 
+        for neighbor in self.adjList[node]: 
+            if neighbor in path:
+                return False
+        
+            path.append(neighbor)
+            return self.isAcyclic(neighbor, path)
