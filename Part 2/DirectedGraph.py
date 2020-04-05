@@ -7,6 +7,11 @@
 #    def __init__(self, nodeVal: int) -> None:
 #        self.nodeVal = nodeVal
 
+class GraphNode():
+    def __init__(self, nodeVal) -> None:
+        self.value = nodeVal
+        self.inDegree = 0 
+
 class DirectedGraph():
     def __init__(self) -> None:
         self.adjList = {}
