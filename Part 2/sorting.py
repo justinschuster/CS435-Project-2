@@ -51,3 +51,9 @@ class TopSort:
 
         # output all nodes in Q in order 
         return output
+
+    # valid topological sort of the graph using mDFS algorithm 
+    @staticmethod
+    def mDFS(graph: DirectedGraph) -> list():
+        pass 
+
