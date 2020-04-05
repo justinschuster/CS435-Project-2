@@ -16,10 +16,12 @@ def createRandomDagIter(n: int) -> DirectedGraph:
     for i in range(0, n):
         newGraph.addNode(i)
 
+    nodes = newGraph.getAllNodes()
+    
     # creates the edges between the nodes  
     for i in range(0, random.randint(1, n*n)):
-        first = random.randint(0, n-1)
-        second = random.randint(0, n-1)
+        first = nodes[random.randint(0, n-1)]
+        second = nodes[random.randint(0, n-1)]
 
         # can't connect to itself 
         if (first == second):
@@ -35,23 +37,21 @@ def createRandomDagIter(n: int) -> DirectedGraph:
         
         #print("First: %d, Second: %d"% (first, second))
         newGraph.addDirectedEdge(first, second)
+        #print("New edge: %d -> %d"% (first.value, second.value))
 
         if newGraph.isAcyclic(first) is False:
+            #print("Removed")
             newGraph.removeDirectedEdge(first, second)
 
     return newGraph
 
 def main() -> None:
-    maze = createRandomDagIter(5)
+    maze = createRandomDagIter(10)
 
-    for node in maze.getAllNodes():
-        print(node)
-        print(maze.adjList[node])
-
-    if maze.isAcyclic(0) is False:
-        print("False")
-    else:
-        print("True")
+    #for node in maze.adjList.keys():
+    #    print()
+    #    for neighbor in maze.adjList[node]:
+    #        print("%d -> %d"% (node.value, neighbor.value))
 
 if __name__=="__main__":
     main()
