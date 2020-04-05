@@ -27,11 +27,13 @@ class DirectedGraph():
     # adds a directed edge between first and second
     def addDirectedEdge(self, first, second) -> None:
         self.adjList[first].append(second)
+        second.inDegree = second.inDegree + 1
         return None
 
     # removes directed edge between two nodes
     def removeDirectedEdge(self, first, second) -> None:
         self.adjList[first].remove(second)
+        second.inDegree = second.inDegree - 1 
         return None 
 
     # returns a set of all Nodes in the graph 
