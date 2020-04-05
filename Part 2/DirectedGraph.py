@@ -18,8 +18,8 @@ class DirectedGraph():
 
     # adds a new node to the graph
     def addNode(self, nodeVal) -> None:
-        self.adjList[nodeVal] = [] 
-       
+        newNode = GraphNode(nodeVal)
+        self.adjList[newNode] = [] 
         return None 
 
     # problem comes in when we are specifying which nodes are first and second 
@@ -27,13 +27,11 @@ class DirectedGraph():
     # adds a directed edge between first and second
     def addDirectedEdge(self, first, second) -> None:
         self.adjList[first].append(second)
-
         return None
 
     # removes directed edge between two nodes
     def removeDirectedEdge(self, first, second) -> None:
         self.adjList[first].remove(second)
-
         return None 
 
     # returns a set of all Nodes in the graph 
