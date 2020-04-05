@@ -52,21 +52,35 @@ class TopSort:
         # output all nodes in Q in order 
         return output
 
+    @staticmethod
+    def DFSHelper(node, stack, visited, graph):
+        # set v as visited
+        visited.append(node)
+
+        # for each neighbor <- v's neighbor 
+        for neighbor in graph.adjList[node]:
+            # if neighbor is not visited 
+            if neighbor not in visited:
+                # call DFSHelper(neighbor)
+                TopSort.DFSHelper(neighbor, stack, visited, graph)
+                
+        #append V to S
+        stack.append(node)
+
     # valid topological sort of the graph using mDFS algorithm 
     @staticmethod
     def mDFS(graph: DirectedGraph) -> list():
         # S is a stack
-        # for each vertex v (node) in G
-            # if v is not visited 
-                # DFShelper(v)
-        # output all nodes in S in order
-        pass 
+        stack = []
+        visited = [] # maybe better way to do this
 
-    @staticmethod
-    def DFSHelper(node, stack):
-        # set v as visited
-        # for each neighbor <- v's neighbor 
-            # if neighbor is not visited 
-                # call DFSHelper(neighbor)
-        #append V to S
-        pass
+        # for each vertex v (node) in G
+        for node in graph.getAllNodes():
+            # if v is not visited 
+            if node not in visited:
+                # DFShelper(v)
+                TopSort.DFSHelper(node, stack, visited, graph)
+
+        # output all nodes in S in order
+        while (len(stack) > 0):
+            print(stack.pop().value)    
