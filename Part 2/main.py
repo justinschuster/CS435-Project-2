@@ -5,6 +5,8 @@
 import random 
 
 from DirectedGraph import DirectedGraph
+from weightedgraph import WeightedGraph
+from sorting import TopSort
 
 # iteratively creates a DAG with n nodes
 # need to create an isValid check after we create a node 
@@ -45,13 +47,34 @@ def createRandomDagIter(n: int) -> DirectedGraph:
 
     return newGraph
 
+# creates a Complete weighted graph with n nodes
+def createRandomCompleteWeightedGraph(n: int) -> WeightedGraph:
+    pass
+
 def main() -> None:
+    '''  
     maze = createRandomDagIter(10)
 
-    #for node in maze.adjList.keys():
-    #    print()
-    #    for neighbor in maze.adjList[node]:
-    #        print("%d -> %d"% (node.value, neighbor.value))
+    for node in maze.adjList.keys():
+        for neighbor in maze.adjList[node]:
+            print("%d -> %d"% (node.value, neighbor.value))
+        print()
 
+    #sorted = TopSort.Kahns(maze)
+    #print("\nKahns")
+    #for i in sorted:
+    #    print(i.value)
+
+    TopSort.mDFS(maze)
+    '''
+
+    graphWeighted = WeightedGraph()
+    first = graphWeighted.addNode(1)
+    second = graphWeighted.addNode(2)
+
+    for node in graphWeighted.getAllNodes():
+        print(graphWeighted.adjList[node])
+
+    
 if __name__=="__main__":
     main()
