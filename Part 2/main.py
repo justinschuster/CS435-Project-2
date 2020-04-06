@@ -48,8 +48,23 @@ def createRandomDagIter(n: int) -> DirectedGraph:
     return newGraph
 
 # creates a Complete weighted graph with n nodes
+# each node has random integer weighted edge to every other node 
+# n(n-1) total edges 
 def createRandomCompleteWeightedGraph(n: int) -> WeightedGraph:
-    pass
+    graph = WeightedGraph()
+
+    for i in range(0, n):
+        graph.addNode(i)
+
+    for node in graph.getAllNodes():
+        for neighbor in graph.getAllNodes():
+            if node is neighbor:
+                pass
+
+            weight = random.randint(0, n)
+            graph.addWeightedEdge(node, neighbor, weight)
+    
+    return graph 
 
 def main() -> None:
     '''  
@@ -68,9 +83,7 @@ def main() -> None:
     TopSort.mDFS(maze)
     '''
 
-    graphWeighted = WeightedGraph()
-    first = graphWeighted.addNode(1)
-    second = graphWeighted.addNode(2)
+    graphWeighted = createRandomCompleteWeightedGraph(5)
 
     for node in graphWeighted.getAllNodes():
         print(graphWeighted.adjList[node])
