@@ -58,12 +58,10 @@ def createRandomCompleteWeightedGraph(n: int) -> WeightedGraph:
 
     for node in graph.getAllNodes():
         for neighbor in graph.getAllNodes():
-            if node is neighbor:
-                pass
+            if node is not neighbor:
+                weight = random.randint(0, n)
+                graph.addWeightedEdge(node, neighbor, weight)
 
-            weight = random.randint(0, n)
-            graph.addWeightedEdge(node, neighbor, weight)
-    
     return graph 
 
 def main() -> None:
@@ -85,8 +83,11 @@ def main() -> None:
 
     graphWeighted = createRandomCompleteWeightedGraph(5)
 
+    count = 0
     for node in graphWeighted.getAllNodes():
-        print(graphWeighted.adjList[node])
+        for edge in graphWeighted.adjList[node]:
+            count += 1
+    print(count)
 
     
 if __name__=="__main__":
