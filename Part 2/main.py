@@ -64,6 +64,21 @@ def createRandomCompleteWeightedGraph(n: int) -> WeightedGraph:
 
     return graph 
 
+# weighted graph with n nodes each with a single edge to the next node
+def createLinkedList(n: int) -> WeightedGraph:
+    graph = WeightedGraph()
+
+    prevNode = None 
+    for i in range(0, n):
+        newNode = graph.addNode(i)
+
+        if prevNode is not None:
+            graph.addWeightedEdge(prevNode, newNode, 1)
+
+        prevNode = newNode 
+    
+    return graph 
+
 def main() -> None:
     '''  
     maze = createRandomDagIter(10)
@@ -81,14 +96,11 @@ def main() -> None:
     TopSort.mDFS(maze)
     '''
 
-    graphWeighted = createRandomCompleteWeightedGraph(5)
+    graphWeighted = createLinkedList(5)
 
-    count = 0
     for node in graphWeighted.getAllNodes():
         for edge in graphWeighted.adjList[node]:
-            count += 1
-    print(count)
+            print("First: %d, Second: %d, Weight: %d"% (node.value, edge.dest.value, edge.weight))
 
-    
 if __name__=="__main__":
     main()
