@@ -27,9 +27,16 @@ class GridGraph:
             second.edges.append(first)
 
     # removes edge from graph
-    def removesUndirectedEdge(self, first, second):
-        pass
+    def removeUndirectedEdge(self, first, second):
+        if first is not second:
+            first.edges.remove(second)
+            second.edges.remove(first)
 
     # gets all nodes in the graph 
-    def getAllNodes():
-        pass
+    def getAllNodes(self):
+        nodes = []
+        for row in self.adjMatrix:
+            for node in row:
+                if node is not 0:
+                    nodes.append(node)
+        return nodes
