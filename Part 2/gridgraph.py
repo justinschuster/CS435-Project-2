@@ -1,6 +1,12 @@
 class GridGraph:
-    def __init__(self):
-        self.adjList = {}
+    def __init__(self, gridSize):
+        self.adjMatrix = []
+
+        for i in range(0, gridSize):
+            column = []
+            for j in range(0, gridSize):
+                column.append(0)
+            self.adjMatrix.append(column)
 
     # adds a node to the GridGraph
     def addGridNode(self, x, y, nodeVal):
