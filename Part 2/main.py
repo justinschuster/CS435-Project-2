@@ -7,6 +7,7 @@ import random
 from DirectedGraph import DirectedGraph
 from weightedgraph import WeightedGraph
 from sorting import TopSort
+from gridgraph import GridGraph
 
 # iteratively creates a DAG with n nodes
 # need to create an isValid check after we create a node 
@@ -79,28 +80,51 @@ def createLinkedList(n: int) -> WeightedGraph:
     
     return graph 
 
+# creates n by n GridGraph
+# 50% chances nodes are connected to its neighbors
+# 0% chance for non-neighbors 
+def createRandomGridGraph(n):
+    graph = GridGraph(n)
+
+    nodeCount = 0
+    for x in range(0, n):
+        for y in range(0, n):
+            graph.addGridNode(x, y, nodeCount)
+            
+            if x is not 0:
+                if random.randint(0, 1) is 1:
+                   graph.addUndirectedEdge(graph.adjMatrix[x][y], graph.adjMatrix[x-1][y]) 
+
+            if y is not 0:
+                if random.randint(0, 1) is 1:
+                    graph.addUndirectedEdge(graph.adjMatrix[x][y], graph.adjMatrix[x][y-1]) 
+
+            nodeCount += 1
+
+    return graph 
+
+# returns a dictionary mapping each node in the graph
+# to the minimum value from start to get to each node 
+def dijkstras(start):
+    pass
+
 def main() -> None:
-    '''  
-    maze = createRandomDagIter(10)
-
-    for node in maze.adjList.keys():
-        for neighbor in maze.adjList[node]:
-            print("%d -> %d"% (node.value, neighbor.value))
-        print()
-
-    #sorted = TopSort.Kahns(maze)
-    #print("\nKahns")
-    #for i in sorted:
-    #    print(i.value)
-
-    TopSort.mDFS(maze)
     '''
-
     graphWeighted = createLinkedList(5)
 
     for node in graphWeighted.getAllNodes():
         for edge in graphWeighted.adjList[node]:
             print("First: %d, Second: %d, Weight: %d"% (node.value, edge.dest.value, edge.weight))
+    '''
+
+    graphGrid = createRandomGridGraph(5)
+'''
+    for i in range(0,5):
+        for j in range(0,5):
+            node = graphGrid.adjMatrix[i][j]
+            for edge in node.edges:
+                print("Node: %d,%d, neighbor: %d,%d"% (node.xCord, node.yCord, edge.xCord, edge.yCord))
+'''
 
 if __name__=="__main__":
     main()
