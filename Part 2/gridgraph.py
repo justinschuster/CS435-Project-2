@@ -1,3 +1,9 @@
+class GridNode():
+    def __init__(self, xCord, yCord, nodeVal):
+        self.xCord = xCord
+        self.yCord = yCord
+        self.nodeVal = nodeVal
+
 class GridGraph:
     def __init__(self, gridSize):
         self.adjMatrix = []
@@ -10,7 +16,8 @@ class GridGraph:
 
     # adds a node to the GridGraph
     def addGridNode(self, x, y, nodeVal):
-        pass
+        newNode = GridNode(x, y, nodeVal)
+        self.adjMatrix[x][y] = newNode
 
     # adds an undirected edge to the graph
     def addUndirectedEdge(self, first, second):
