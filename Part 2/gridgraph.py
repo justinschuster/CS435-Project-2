@@ -3,6 +3,7 @@ class GridNode():
         self.xCord = xCord
         self.yCord = yCord
         self.nodeVal = nodeVal
+        self.edges = []
 
 class GridGraph:
     def __init__(self, gridSize):
@@ -21,7 +22,9 @@ class GridGraph:
 
     # adds an undirected edge to the graph
     def addUndirectedEdge(self, first, second):
-        pass
+        if first is not second:
+            first.edges.append(second)
+            second.edges.append(first)
 
     # removes edge from graph
     def removesUndirectedEdge(self, first, second):
