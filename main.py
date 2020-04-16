@@ -162,16 +162,12 @@ def dijkstras(start):
     pass
 
 def main() -> None:
-    maze = createRandomUnweightedGraphIter(10)
-    search = GraphSearch(maze)
+    # Directed Graph Tests 
+    directedGraph = createRandomDagIter(5)
 
-    traversal = []
-    print("Dest: " + str(maze.nodes[9].data))
-    traversal = search.DFSRec(maze.nodes[0], maze.nodes[9])
-    print(traversal)
-
-    #for node in traversal:
-    #    print(node.data)
+    res = TopSort.mDFS(directedGraph)
+    for node in res:
+        print(node.value)
 
 if __name__=="__main__":
     main()

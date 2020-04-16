@@ -3,7 +3,7 @@
 # weightedgraph.py 
 
 class WeightedGraphEdge():
-    def __init__(self, dest, weight):
+    def __init__(self, dest, weight) -> None:
         self.dest = dest
         self.weight = weight 
 
@@ -34,8 +34,4 @@ class WeightedGraph():
 
     # gets all nodes in the graph
     def getAllNodes(self) -> list():
-        output = []
-        for key in self.adjList.keys():
-            output.append(key)
-            
-        return output 
+        return self.adjList.keys() 

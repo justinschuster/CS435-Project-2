@@ -2,11 +2,6 @@
 # Author: Justin Schuster
 # DirectedGraph.py 
 
-# Don't even know if we need to create actual nodes or just entries in adjList 
-#class DAGNode():
-#    def __init__(self, nodeVal: int) -> None:
-#        self.nodeVal = nodeVal
-
 class GraphNode():
     def __init__(self, nodeVal) -> None:
         self.value = nodeVal
@@ -24,8 +19,6 @@ class DirectedGraph():
         self.nodes.append(newNode)
         return newNode 
 
-    # problem comes in when we are specifying which nodes are first and second 
-    # we don't have node objects, may need them
     # adds a directed edge between first and second
     def addDirectedEdge(self, first, second) -> None:
         self.adjList[first].append(second)

@@ -17,7 +17,6 @@ class TopSort:
 
         # add all elements of M whose values are 0 to Q
         for node in graph.getAllNodes():
-            print("Node: %d, in degree: %d"% (node.value, node.inDegree))
             if node.inDegree is 0:
                 queue.append(node)
 
@@ -38,16 +37,6 @@ class TopSort:
 
             # decrement the in-degree of N to -1 (to avoid adding it back to Q)
             currNode.inDegree = -1
-
-            # for each neighbor <-- N's neighbors
-            #for neighbor in graph.adjList[currNode]:
-                # if neighbor has in-degree 0
-                #if neighbor.inDegree is 0:
-                    # add neighbor to Q
-                    #queue.append(neighbor)
-
-            # remove N from Q
-            #queue.remove(currNode)
 
         # output all nodes in Q in order 
         return output
@@ -70,6 +59,8 @@ class TopSort:
     # valid topological sort of the graph using mDFS algorithm 
     @staticmethod
     def mDFS(graph: DirectedGraph) -> list():
+        output = []
+
         # S is a stack
         stack = []
         visited = [] # maybe better way to do this
@@ -83,4 +74,5 @@ class TopSort:
 
         # output all nodes in S in order
         while (len(stack) > 0):
-            print(stack.pop().value)    
+            output.append(stack.pop())
+        return output 
