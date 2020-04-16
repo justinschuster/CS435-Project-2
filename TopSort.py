@@ -45,7 +45,6 @@ class TopSort:
         visited = [] 
 
         for node in graph.getAllNodes():
-            # if v is not visited 
             if node not in visited:
                 TopSort.DFSHelper(node, stack, visited, graph)
 

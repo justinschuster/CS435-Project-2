@@ -9,29 +9,26 @@ from DirectedGraph import DirectedGraph
 class GraphSearch:
     def __init__(self, graph: Graph):
         self.graph = graph
-        self.visited = [False] * len(graph.nodes)
         self.traversal = []
 
     # recursive DFS traversal of the graph
     def DFSRec(self, start: GraphNode, end: GraphNode) -> list():
+        visit = [False]*len(graph.nodes)
+
         if (self.visited[start.data] == False):
             return self.dfsHelper(start, end) 
                 
     def dfsHelper(self, current: GraphNode, end: GraphNode):
-        # mark visited 
+        visited = [False]*len(graph.nodes)
+
         self.visited[current.data] = True
         self.traversal.append(current)
 
-        # "process"
         if (current.data == end.data):
             return self.traversal
 
-        # Not sure how to add it to array right now 
-        # for each vertex that has an edge from v:
         for vertex in self.graph.adjList[current.data]:
-            # if v is not visited 
             if (self.visited[vertex.data] == False):
-                # dfs v
                 self.DFSRec(vertex, end)
 
 # Creates n random nodes with randomly assigned unweighted, bidirectional edges
@@ -103,7 +100,6 @@ def createRandomDagIter(n: int) -> DirectedGraph:
 
 # creates a Complete weighted graph with n nodes
 # each node has random integer weighted edge to every other node 
-# n(n-1) total edges 
 def createRandomCompleteWeightedGraph(n: int) -> WeightedGraph:
     graph = WeightedGraph()
 
