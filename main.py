@@ -13,22 +13,22 @@ class GraphSearch:
 
     # recursive DFS traversal of the graph
     def DFSRec(self, start: GraphNode, end: GraphNode) -> list():
-        visit = [False]*len(graph.nodes)
+        visited = [False]*len(graph.nodes)
 
-        if (self.visited[start.data] == False):
+        if (visited[start.data] == False):
             return self.dfsHelper(start, end) 
                 
     def dfsHelper(self, current: GraphNode, end: GraphNode):
         visited = [False]*len(graph.nodes)
 
-        self.visited[current.data] = True
+        visited[current.data] = True
         self.traversal.append(current)
 
         if (current.data == end.data):
             return self.traversal
 
         for vertex in self.graph.adjList[current.data]:
-            if (self.visited[vertex.data] == False):
+            if (visited[vertex.data] == False):
                 self.DFSRec(vertex, end)
 
 # Creates n random nodes with randomly assigned unweighted, bidirectional edges
@@ -70,32 +70,22 @@ def createRandomDagIter(n: int) -> DirectedGraph:
         newGraph.addNode(i)
 
     nodes = newGraph.getAllNodes()
-    
-    # creates the edges between the nodes  
     for i in range(0, random.randint(1, n*n)):
         first = nodes[random.randint(0, n-1)]
         second = nodes[random.randint(0, n-1)]
 
-        # can't connect to itself 
         if (first == second):
             continue
         
-        # can't traverse backwards 
         if second in newGraph.adjList[first] or first in newGraph.adjList[second]:
             continue
 
-        # can only traverse forward or right meaning 2 edges max
         if (len(newGraph.adjList[first]) == 2):
             continue
         
-        #print("First: %d, Second: %d"% (first, second))
         newGraph.addDirectedEdge(first, second)
-        #print("New edge: %d -> %d"% (first.value, second.value))
-
         if newGraph.isAcyclic(first) is False:
-            #print("Removed")
             newGraph.removeDirectedEdge(first, second)
-
     return newGraph
 
 # creates a Complete weighted graph with n nodes
